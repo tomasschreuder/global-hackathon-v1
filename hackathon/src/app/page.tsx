@@ -1,6 +1,9 @@
 import { CreatorsDashboard } from "@/components/creator-component"
 import MusicBrowser from "@/components/music-browser"
 import { ViralHero } from "@/components/viral-hero"
+import { TikTokViewer } from "@/components/tiktok-viewer"
+
+/////// gotta move
 
 export default function Home() {
   return (
@@ -19,6 +22,12 @@ export default function Home() {
         <summary className="cursor-pointer font-semibold text-lg">Music Browser</summary>
         <div className="mt-4">
         <MusicBrowser />
+        </div>
+      </details>
+            <details className="bg-white rounded-lg shadow p-6">
+        <summary className="cursor-pointer font-semibold text-lg">Music Browser</summary>
+        <div className="mt-4">
+        <TikTokViewer />
         </div>
       </details>
       </div>
