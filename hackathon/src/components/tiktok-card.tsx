@@ -98,6 +98,8 @@ export function TikTokCard({ video }: TikTokCardProps) {
   const [showTranscript, setShowTranscript] = useState(false)
   const [fetchedTranscript, setFetchedTranscript] = useState<string | null>(null)
   const [isLoadingTranscript, setIsLoadingTranscript] = useState(false)
+  const [thumbnailError, setThumbnailError] = useState(false)
+  const [avatarError, setAvatarError] = useState(false)
 
   const hasTranscript = video.transcript || video.transcriptUrl
 
@@ -124,11 +126,16 @@ export function TikTokCard({ video }: TikTokCardProps) {
       {/* Thumbnail */}
       <div className="relative aspect-[9/16] overflow-hidden bg-muted">
         <Image
-          src={video.thumbnail || "/placeholder.svg"}
+          src={
+            thumbnailError
+              ? "/placeholder.svg?height=800&width=450"
+              : video.thumbnail || "/placeholder.svg?height=800&width=450"
+          }
           alt={video.description}
           fill
           className="object-cover transition-transform group-hover:scale-105"
-          crossOrigin="anonymous"
+          unoptimized
+          onError={() => setThumbnailError(true)}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
 
@@ -149,12 +156,17 @@ export function TikTokCard({ video }: TikTokCardProps) {
         {/* Author */}
         <div className="flex items-start gap-3">
           <Image
-            src={video.author.avatar || "/placeholder.svg"}
+            src={
+              avatarError
+                ? "/placeholder.svg?height=40&width=40"
+                : video.author.avatar || "/placeholder.svg?height=40&width=40"
+            }
             alt={video.author.username}
             width={40}
             height={40}
             className="rounded-full"
-            crossOrigin="anonymous"
+            unoptimized
+            onError={() => setAvatarError(true)}
           />
           <div className="min-w-0 flex-1">
             <div className="flex items-center gap-2">

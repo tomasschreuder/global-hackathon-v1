@@ -9,9 +9,9 @@ export function CyclingIcons() {
 
   // Placeholder icons - user will provide their own
   const icons = [
-    <Instagram key="instagram" className="w-12 h-12 md:w-16 md:h-16" />,
-    <Youtube key="youtube" className="w-12 h-12 md:w-16 md:h-16" />,
-    <Twitter key="twitter" className="w-12 h-12 md:w-16 md:h-16" />,
+    { src: '/instagram.svg', alt: 'Instagram' },
+    { src: '/tiktok.svg', alt: 'TikTok' },
+    { src: '/youtube.svg', alt: 'YouTube' }
   ]
 
   useEffect(() => {
@@ -32,7 +32,7 @@ export function CyclingIcons() {
         isVisible ? "opacity-100" : "opacity-0"
       }`}
     >
-      {icons[currentIndex]}
+      <img src={icons[currentIndex].src} alt={icons[currentIndex].alt} className="h-20 w-20" />
     </span>
   )
 }
