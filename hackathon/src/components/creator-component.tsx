@@ -139,61 +139,61 @@ export function CreatorsDashboard() {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <header className="border-b border-border bg-card sticky top-0 z-10 backdrop-blur-sm bg-card/80">
-        <div className="container mx-auto px-4 py-6">
-          <div className="flex flex-col gap-6">
+      <header className="border-b border-border bg-card">
+        <div className="container mx-auto px-4 py-4">
+          <div className="flex flex-col gap-4">
             <div className="flex items-center justify-between">
               <div>
-                <h1 className="text-3xl font-bold text-foreground">TikTok Creators</h1>
-                <p className="text-muted-foreground mt-1">Discover trending creators and their performance</p>
+                <h1 className="text-2xl font-bold text-foreground">TikTok Creators</h1>
+                <p className="text-sm text-muted-foreground mt-0.5">Discover trending creators and their performance</p>
               </div>
-              <Badge variant="secondary" className="text-lg px-4 py-2">
+              <Badge variant="secondary" className="text-sm px-3 py-1">
                 {creators.length} Creators
               </Badge>
             </div>
 
             {/* Stats Overview */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
               <Card className="bg-accent/50 border-accent">
-                <CardContent className="p-4">
-                  <div className="flex items-center gap-2 text-muted-foreground mb-1">
-                    <Eye className="h-4 w-4" />
-                    <span className="text-sm font-medium">Total Views</span>
+                <CardContent className="p-3">
+                  <div className="flex items-center gap-1.5 text-muted-foreground mb-0.5">
+                    <Eye className="h-3.5 w-3.5" />
+                    <span className="text-xs font-medium">Total Views</span>
                   </div>
-                  <p className="text-2xl font-bold text-foreground">{formatNumber(totalStats.views)}</p>
+                  <p className="text-lg font-bold text-foreground">{formatNumber(totalStats.views)}</p>
                 </CardContent>
               </Card>
               <Card className="bg-accent/50 border-accent">
-                <CardContent className="p-4">
-                  <div className="flex items-center gap-2 text-muted-foreground mb-1">
-                    <Heart className="h-4 w-4" />
-                    <span className="text-sm font-medium">Total Likes</span>
+                <CardContent className="p-3">
+                  <div className="flex items-center gap-1.5 text-muted-foreground mb-0.5">
+                    <Heart className="h-3.5 w-3.5" />
+                    <span className="text-xs font-medium">Total Likes</span>
                   </div>
-                  <p className="text-2xl font-bold text-foreground">{formatNumber(totalStats.likes)}</p>
+                  <p className="text-lg font-bold text-foreground">{formatNumber(totalStats.likes)}</p>
                 </CardContent>
               </Card>
               <Card className="bg-accent/50 border-accent">
-                <CardContent className="p-4">
-                  <div className="flex items-center gap-2 text-muted-foreground mb-1">
-                    <MessageCircle className="h-4 w-4" />
-                    <span className="text-sm font-medium">Total Comments</span>
+                <CardContent className="p-3">
+                  <div className="flex items-center gap-1.5 text-muted-foreground mb-0.5">
+                    <MessageCircle className="h-3.5 w-3.5" />
+                    <span className="text-xs font-medium">Total Comments</span>
                   </div>
-                  <p className="text-2xl font-bold text-foreground">{formatNumber(totalStats.comments)}</p>
+                  <p className="text-lg font-bold text-foreground">{formatNumber(totalStats.comments)}</p>
                 </CardContent>
               </Card>
               <Card className="bg-accent/50 border-accent">
-                <CardContent className="p-4">
-                  <div className="flex items-center gap-2 text-muted-foreground mb-1">
-                    <Share2 className="h-4 w-4" />
-                    <span className="text-sm font-medium">Total Shares</span>
+                <CardContent className="p-3">
+                  <div className="flex items-center gap-1.5 text-muted-foreground mb-0.5">
+                    <Share2 className="h-3.5 w-3.5" />
+                    <span className="text-xs font-medium">Total Shares</span>
                   </div>
-                  <p className="text-2xl font-bold text-foreground">{formatNumber(totalStats.shares)}</p>
+                  <p className="text-lg font-bold text-foreground">{formatNumber(totalStats.shares)}</p>
                 </CardContent>
               </Card>
             </div>
 
             {/* Search and Filter */}
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-col sm:flex-row gap-3">
               <div className="relative flex-1">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                 <Input
@@ -220,13 +220,13 @@ export function CreatorsDashboard() {
       </header>
 
       {/* Creators Grid */}
-      <main className="container mx-auto px-4 py-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <main className="container mx-auto px-4 py-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           {filteredAndSortedCreators.map((creator, index) => (
             <Card key={index} className="overflow-hidden hover:shadow-lg transition-shadow duration-300 group">
               <CardContent className="p-0">
                 {/* Video Cover */}
-                <div className="relative aspect-[9/16] bg-muted overflow-hidden">
+                <div className="relative aspect-[4/5] bg-muted overflow-hidden">
                   <img
                     src={creator.aweme.video.cover.url_list[0] || "/placeholder.svg"}
                     alt={creator.aweme.desc}
@@ -235,22 +235,22 @@ export function CreatorsDashboard() {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
 
                   {/* Stats Overlay */}
-                  <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
-                    <div className="flex items-center gap-4 text-sm">
-                      <div className="flex items-center gap-1">
-                        <Eye className="h-4 w-4" />
+                  <div className="absolute bottom-0 left-0 right-0 p-2 text-white">
+                    <div className="flex items-center gap-2 text-xs">
+                      <div className="flex items-center gap-0.5">
+                        <Eye className="h-3 w-3" />
                         <span className="font-semibold">{formatNumber(creator.aweme.statistics.play_count)}</span>
                       </div>
-                      <div className="flex items-center gap-1">
-                        <Heart className="h-4 w-4" />
+                      <div className="flex items-center gap-0.5">
+                        <Heart className="h-3 w-3" />
                         <span className="font-semibold">{formatNumber(creator.aweme.statistics.digg_count)}</span>
                       </div>
-                      <div className="flex items-center gap-1">
-                        <MessageCircle className="h-4 w-4" />
+                      <div className="flex items-center gap-0.5">
+                        <MessageCircle className="h-3 w-3" />
                         <span className="font-semibold">{formatNumber(creator.aweme.statistics.comment_count)}</span>
                       </div>
-                      <div className="flex items-center gap-1">
-                        <Share2 className="h-4 w-4" />
+                      <div className="flex items-center gap-0.5">
+                        <Share2 className="h-3 w-3" />
                         <span className="font-semibold">{formatNumber(creator.aweme.statistics.share_count)}</span>
                       </div>
                     </div>
@@ -258,9 +258,9 @@ export function CreatorsDashboard() {
                 </div>
 
                 {/* Creator Info */}
-                <div className="p-4 space-y-3">
-                  <div className="flex items-start gap-3">
-                    <Avatar className="h-12 w-12 border-2 border-primary">
+                <div className="p-3 space-y-2">
+                  <div className="flex items-start gap-2">
+                    <Avatar className="h-8 w-8 border-2 border-primary">
                       <AvatarImage
                         src={creator.user.avatar_thumb.url_list[0] || "/placeholder.svg"}
                         alt={creator.user.nickname}
@@ -268,22 +268,22 @@ export function CreatorsDashboard() {
                       <AvatarFallback>{creator.user.nickname[0]}</AvatarFallback>
                     </Avatar>
                     <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-2">
-                        <h3 className="font-semibold text-foreground truncate">{creator.user.nickname}</h3>
-                        {creator.user.custom_verify && <CheckCircle2 className="h-4 w-4 text-primary flex-shrink-0" />}
+                      <div className="flex items-center gap-1">
+                        <h3 className="text-sm font-semibold text-foreground truncate">{creator.user.nickname}</h3>
+                        {creator.user.custom_verify && <CheckCircle2 className="h-3 w-3 text-primary flex-shrink-0" />}
                       </div>
-                      <p className="text-sm text-muted-foreground">@{creator.user.unique_id}</p>
+                      <p className="text-xs text-muted-foreground">@{creator.user.unique_id}</p>
                     </div>
                   </div>
 
                   {/* Description */}
-                  <p className="text-sm text-foreground line-clamp-2 leading-relaxed">{creator.aweme.desc}</p>
+                  <p className="text-xs text-foreground line-clamp-2 leading-relaxed">{creator.aweme.desc}</p>
 
                   {/* Hashtags */}
                   {creator.aweme.cha_list && creator.aweme.cha_list.length > 0 && (
-                    <div className="flex flex-wrap gap-2">
-                      {creator.aweme.cha_list.slice(0, 3).map((hashtag, idx) => (
-                        <Badge key={idx} variant="secondary" className="text-xs">
+                    <div className="flex flex-wrap gap-1">
+                      {creator.aweme.cha_list.slice(0, 2).map((hashtag, idx) => (
+                        <Badge key={idx} variant="secondary" className="text-[10px] px-1.5 py-0">
                           #{hashtag.cha_name}
                         </Badge>
                       ))}
@@ -291,7 +291,7 @@ export function CreatorsDashboard() {
                   )}
 
                   {/* Date */}
-                  <p className="text-xs text-muted-foreground">{formatDate(creator.aweme.create_time)}</p>
+                  <p className="text-[10px] text-muted-foreground">{formatDate(creator.aweme.create_time)}</p>
                 </div>
               </CardContent>
             </Card>
