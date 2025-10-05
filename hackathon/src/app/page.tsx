@@ -16,7 +16,7 @@ export default function Home() {
       </div>
       <div className="flex space-x-4 mt-6">
         <LaunchButton href={"/example"} text={"See Example"} />
-        <LaunchButton href={"/example"} text={"Get Analysis"} />
+        <LaunchButton href={"/goviral"} text={"Go Viral Now"} />
       </div>
 
     </main>

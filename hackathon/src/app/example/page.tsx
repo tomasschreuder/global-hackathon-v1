@@ -1,10 +1,22 @@
+
+
 import { CreatorsDashboard } from "@/components/creator-component"
 import MusicBrowser from "@/components/music-browser"
 import { ViralHero } from "@/components/viral-hero-demo"
 import { TikTokViewer } from "@/components/tiktok-viewer"
 import HashtagDashboard from "@/components/hashtag-dashboard"
 import { Button } from "@/components/ui/button"
-/////// gotta move
+import { useEffect, useState } from "react"
+import musicResp from "@/data/tiktok_music.json"
+import creatorData from "@/data/tiktok-creators.json"
+import musicData from "@/data/tiktok_music.json"
+
+//const [musicList, setMusicList] = useState<MusicTrack[]>([])
+
+// useEffect(() => {
+//   fetch("/tiktok_music.json")
+//     .then((r
+
 
 export default function Home() {
   return (
@@ -16,13 +28,13 @@ export default function Home() {
       <details className="bg-white rounded-lg shadow p-6">
         <summary className="cursor-pointer font-semibold text-lg">Top Creators</summary>
         <div className="mt-4">
-        <CreatorsDashboard />
+        <CreatorsDashboard data={creatorData} />
         </div>
       </details>
       <details className="bg-white rounded-lg shadow p-6">
         <summary className="cursor-pointer font-semibold text-lg">Trending Sounds</summary>
         <div className="mt-4">
-        <MusicBrowser />
+        <MusicBrowser data={musicData} />
         </div>
       </details>
             <details className="bg-white rounded-lg shadow p-6">

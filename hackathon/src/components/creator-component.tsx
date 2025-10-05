@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useMemo, useEffect } from "react"
+import { useState, useMemo } from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Badge } from "@/components/ui/badge"
@@ -38,6 +38,10 @@ interface TikTokCreator {
   }
 }
 
+interface CreatorsDashboardProps {
+  data: Array<{ user_list: TikTokCreator[] }>
+}
+
 function formatNumber(num: number): string {
   if (num >= 1000000) {
     return (num / 1000000).toFixed(1) + "M"
@@ -53,28 +57,11 @@ function formatDate(timestamp: number): string {
   return date.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })
 }
 
-export function CreatorsDashboard() {
+export function CreatorsDashboard({ data }: CreatorsDashboardProps) {
   const [searchQuery, setSearchQuery] = useState("")
   const [sortBy, setSortBy] = useState<"views" | "likes" | "comments" | "recent">("views")
-  const [creators, setCreators] = useState<TikTokCreator[]>([])
-  const [isLoading, setIsLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
 
-  useEffect(() => {
-    fetch("/data/tiktok-creators.json")
-      .then((res) => {
-        if (!res.ok) throw new Error("Failed to load data")
-        return res.json()
-      })
-      .then((data) => {
-        setCreators(data[0]?.user_list || [])
-        setIsLoading(false)
-      })
-      .catch((err) => {
-        setError(err.message)
-        setIsLoading(false)
-      })
-  }, [])
+  const creators = data[0]?.user_list || []
 
   const filteredAndSortedCreators = useMemo(() => {
     const filtered = creators.filter((creator) => {
@@ -113,28 +100,6 @@ export function CreatorsDashboard() {
       { views: 0, likes: 0, comments: 0, shares: 0 },
     )
   }, [creators])
-
-  if (isLoading) {
-    return (
-      <div className="min-h-screen bg-background flex items-center justify-center">
-        <div className="text-center">
-          <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-primary border-r-transparent mb-4"></div>
-          <p className="text-muted-foreground">Loading creators...</p>
-        </div>
-      </div>
-    )
-  }
-
-  if (error) {
-    return (
-      <div className="min-h-screen bg-background flex items-center justify-center">
-        <div className="text-center">
-          <p className="text-destructive text-lg mb-2">Error loading data</p>
-          <p className="text-muted-foreground">{error}</p>
-        </div>
-      </div>
-    )
-  }
 
   return (
     <div className="min-h-screen bg-background">
@@ -307,3 +272,4 @@ export function CreatorsDashboard() {
     </div>
   )
 }
+
